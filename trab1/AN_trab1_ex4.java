@@ -1,25 +1,34 @@
-
 public class AN_trab1_ex4 {
 
 	public static void main(String[] args){
 		
-		int inf=999999999; 	//para inf=9999999999 => 0.6931471800606472
-							//para inf=1000000000 => 0.6931471810606472
-					 		//para inf=100000     => 0.6931521805849815
-		//como o enunciado pede um erro inferior a 5x10^-8 e 5x10^-10, eu penso que 
-		//a solução deverá ter 8 casas decimais e 10 casas decimais com uma margem de 5 
-		//unidades.
-
-		double res = 0,first,second;
+		int max=Integer.MAX_VALUE;
+		double res=0, first, second, first_error=0.00000005, second_error=0.0000000005,exact_value = Math.log(2), error;
+		int i;
+		boolean check = false;
 		
-		for(int i=1; i<inf; i++){
-			first=Math.pow((double)(-1), (double)(i+1));
+		for(i=1; i<max; i++){
+			if(i%2!=0)
+				first=1;
+			else
+				first=-1;
 			second=(double)1/i;
 			res+=(double)first*second;
-			//System.out.println("First: "+first+" Second: "+second+" Res:"+res);
+			error = Math.abs(exact_value-res);
+			if(error<first_error && !check){
+				System.out.println("Para um erro absoluto de 5.0x10^-8:");
+				System.out.println("A pesquisa correu "+i+" iteraÃ§Ãµes (N="+i+")");
+				System.out.println("A pesquisa obteve um resuldado de " + res);
+				System.out.println();
+				check=true;
+			}
+			if(error<second_error){
+				System.out.println("Para um erro absoluto de 5.0x10^-10:");
+				System.out.println("A pesquisa correu "+i+" iteraÃ§Ãµes (N="+i+")");
+				System.out.println("A pesquisa obteve um resuldado de " + res);
+				break;
+			}
+			//System.out.println("Error:"+(error)+" Res:"+res);
 		}
-		
-		System.out.println(res);
-		
 	}
 }
