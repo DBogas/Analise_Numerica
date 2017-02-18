@@ -35,26 +35,20 @@ public class AN_trab1_ex2 {
 	public static void secondMethod(){
 	
 		double result=0;
-		for(int m=1; m<=20; m++){
+		double fact;
+		for(int m=0; m<=25; m++){
 			result=0;
-			for(int k=1; k<=m; k++)
-				result+=(1/factorial(k));
+			fact=1;
+			for(int k=0; k<=m; k++){
+				if(k!=0)
+					fact*=k;
+				result+=(1/fact);
+			}
 			System.out.println("b("+m+") = "+result);
 		}
 		
 		double error = Math.exp(1)-result;
 		System.out.println("Constante de Euler = " + Math.exp(1));
 		System.out.println("Constante de Euler - Resultado = " + error);
-		//erro demasiado grande?
 	}
-	
-	public static double factorial(int n){
-		
-		double result=n;
-		for(int i=n-1; i>0; i--)
-			result*=i;
-		
-		return result;
-	}
-	
 }
