@@ -19,14 +19,16 @@ public class AN_trab1_ex3 {
 			error = Math.PI-pi;
 			if(error<checkError && !check){
 				System.out.println("Para um erro absoluto de 10^-"+conta+":");
-				System.out.println("O numero n de termos usados na série: " + i);
+				System.out.println("O numero n de termos usados na sÃ©rie: " + i);
 				System.out.println("Sn, o valor aproximado de Pi: " + pi);
-				System.out.println("O erro absoluto efetivamente cometido no cálculo de Pi, En = |Pi-Sn|: " + error);
+				System.out.println("O erro absoluto efetivamente cometido no cÃ¡lculo de Pi, En = |Pi-Sn|: " + error);
 				System.out.println();
 				conta++;
 				checkError/=10;
-				if(conta==13)
+				if(conta==13){
 					check=true;
+					break;
+				}
 			}
 			//System.out.println("I:"+i+" PI:"+pi+" ERRO:"+error);
 		}
