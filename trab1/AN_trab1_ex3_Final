@@ -1,0 +1,45 @@
+
+public class AN_trab1_ex3 {
+
+	public static void main(String[] args){
+		
+		int inf = Integer.MAX_VALUE; 
+		double pi=0, num, denum, num2, fact = 1, num1, checkError=0.00001, error;
+		int conta=5;
+		boolean check=false;
+		
+		for(int i=0; i<inf; i++){
+			if(i!=0)
+				fact*=i;
+			num1 = Math.pow((double)2, (double)(i+1));
+			num2 = Math.pow((double)fact, (double)2);
+			num = num1*num2;
+			denum = factorial(2*i+1);
+			pi+=num/denum;
+			
+			error = Math.PI-pi;
+			if(error<checkError && !check){
+				System.out.println("Para um erro absoluto de 10^-"+conta+":");
+				System.out.println("O numero n de termos usados na série: " + i);
+				System.out.println("Sn, o valor aproximado de Pi: " + pi);
+				System.out.println("O erro absoluto efetivamente cometido no cálculo de Pi, En = |Pi-Sn|: " + error);
+				System.out.println();
+				conta++;
+				checkError/=10;
+				if(conta==13){
+					check=true;
+					break;
+				}
+			}		
+			//System.out.println("I:"+i+" PI:"+pi+" ERRO:"+error);
+		}
+	}
+	
+	public static double factorial(int n){
+		 double fact = 1; // this  will be the result
+	     for(int i=1; i<=n; i++) 
+	    	 fact *= (double)i;
+	      
+	     return fact;
+	}
+}
