@@ -36,7 +36,7 @@ public class AN_trab1_ex2 {
 	
 		double result=0;
 		double fact;
-		for(int m=0; m<=25; m++){
+		for(int m=1; m<=20; m++){
 			result=0;
 			fact=1;
 			for(int k=0; k<=m; k++){
