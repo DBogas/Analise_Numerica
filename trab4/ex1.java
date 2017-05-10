@@ -33,11 +33,14 @@ class ex1 {
         	cummulativeH+= h;
         }
         parcel2 *= h;
-		System.out.println("Value calculated: " +parcel1 + parcel2);
+        double result = parcel1+parcel2;
+		System.out.println("Value calculated: "+result);
+        
+
         //Error calculating
         // im assuming t is a middle value between a and b, middle as in, any value goes
         double t = (b - a) / 2;
-        double error = -1 * (Math.pow(h, 2) / 12) * (b - a) * f2(t);
+        double error = Math.abs(-1 * (Math.pow(h, 2) / 12) * (b - a) * f2(t));
 
         System.out.println("Error: " + error);
     }
