@@ -1,5 +1,5 @@
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.Scanner;
 
 /*
 calcular integral de Math.sin(Math.sin(Math.sin(Math.sin(x)))) dx pela regra dos trapézios
@@ -10,39 +10,44 @@ o valor "a" representa o limite inferior do integral, e b representa o superior
 class ex1 {
 
     public static void main(String args[]) {
+        
         Scanner in = new Scanner(System.in);
+        
         System.out.println("The expression is: sin(sin(sin(sin(x))))");
         System.out.println("Enter, in order, values of a and b.");
+        
         int a = in.nextInt();
         int b = in.nextInt();
-        // Each partition of the interval has size h = (b-a)/n. N began as 20, 2/20 = 0.1(size of interval)
         int n = 10;
-        double size = roundToOneDecimalPlace((b - a) / n);
-        System.out.println("size:"+size);
+        double size = ((double)(b - a) / n);
+        
+        System.out.println("size of interval:"+size);
+        System.out.println("a:"+a+"\t b:"+b);
+        
         calcIntegral(a, b, size, n);
     }
 
     static void calcIntegral(int a, int b, double h, int n) {
-        // check slide 144
-        // initial parcel, rest comes in the for cycle
-        double parcel1 = (h / 2) * (f(a) + f(b));
+        // calc val here
+        double parcel1 = (h/2)*(f(a)+f(b));
         double parcel2 = 0;
-        double cummulativeH = h;
-        for (int i = 1; i <= n - 1; i++) {
-           parcel2 += f(cummulativeH);
-        	cummulativeH+= h;
-        }
-        parcel2 *= h;
-        double result = parcel1+parcel2;
-		System.out.println("Value calculated: "+result);
+        double h2 = h;
         
-
-        //Error calculating
-        // im assuming t is a middle value between a and b, middle as in, any value goes
-        double t = (b - a) / 2;
-        double error = Math.abs(-1 * (Math.pow(h, 2) / 12) * (b - a) * f2(t));
-
-        System.out.println("Error: " + error);
+        for(int i=1; i<n; i++){
+            parcel2 += f(h2);
+            h2 += h;
+        }
+        
+        parcel2 *= h;
+        
+        double result = parcel1+parcel2;
+        
+        System.out.println("Result: "+result);
+        
+        // calc error here
+        // inventei um t aqui
+        double error = -1 * ((double)Math.pow(h,2)/12) * (b-a) * f2((double)(b-a)/2);
+        System.out.println("error: "+ Math.abs(error));
     }
 
     // returns the value of function f described above in a given x
@@ -63,6 +68,7 @@ class ex1 {
        // df.setRoundingMode(RoundingMode.CEILING);
         return Double.parseDouble(df.format(d));
     }
-
+    
+   
 
 }
