@@ -46,7 +46,8 @@ class ex1 {
         
         // calc error here
         // inventei um t aqui
-        double error = -1 * ((double)Math.pow(h,2)/12) * (b-a) * f2((double)(b-a)/2);
+        double t = (b-a)/2;
+        double error = -1 * ((double)Math.pow(h,2)/12) * (b-a) * f2(t);
         System.out.println("error: "+ Math.abs(error));
     }
 
