@@ -15,20 +15,37 @@ class trap {
         double e = 5*Math.pow(10, -8);
         double m = 1.088549352507347;
         
-        int n = definirN(i, e, m);
-        double h = i/n;
-
-        System.out.println("N = "+n+"\tH = "+h);
-    }
-
-    static int definirN(double i, double e, double m) {
         int n = 1;
+        double h;
+        double err;
+
         while(true) {
-            double h = i/n;
-            double err = -1 * (Math.pow(h,2)/12) * i * m;
+            h = i/n;
+            err = -1 * (Math.pow(h,2)/12) * i * m;
             if(Math.abs(err) < e)
-                return n;
+                break;
             n++;
         }
+
+        double p1 = (h/2) * (f(a) + f(b));
+        double p2 = 0;
+        double hh = h;
+
+        for(int k=1; k<n; k++){
+            p2 += f(hh);
+            hh += h;
+        }
+        p2 *= h;
+        
+        double res = p1+p2;
+        double real = 1.0548418772491;
+
+        System.out.println("N = "+n+"\tH = "+h);
+        System.out.println("Valor real: "+real+"\tResultado = "+res+"\tMajorante = "+Math.abs(err)+"\tErro = "+Math.abs(real - res));
+        
+    }
+
+    static double f(double x) {
+        return Math.sin(Math.sin(Math.sin(Math.sin(x))));
     }
 }
